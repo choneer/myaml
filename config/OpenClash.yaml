@@ -1,0 +1,1246 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: false
+external-controller: 0.0.0.0:9090
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  listen: 0.0.0.0:7874
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+  - 114.114.114.114
+  - 119.29.29.29
+  - 223.5.5.5
+  nameserver:
+  - dhcp://"eth1"
+  - 192.168.10.1
+  - 114.114.114.114
+  - 119.29.29.29
+  - 119.28.28.28
+  - 223.5.5.5
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  proxy-server-nameserver:
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  fake-ip-filter:
+  - '*.lan'
+  - '*.localdomain'
+  - '*.example'
+  - '*.invalid'
+  - '*.localhost'
+  - '*.test'
+  - '*.local'
+  - '*.home.arpa'
+  - '*.direct'
+  - cable.auth.com
+  - network-test.debian.org
+  - detectportal.firefox.com
+  - resolver1.opendns.com
+  - global.turn.twilio.com
+  - global.stun.twilio.com
+  - app.yinxiang.com
+  - injections.adguard.org
+  - localhost.*.weixin.qq.com
+  - '*.blzstatic.cn'
+  - '*.cmpassport.com'
+  - id6.me
+  - open.e.189.cn
+  - opencloud.wostore.cn
+  - id.mail.wo.cn
+  - mdn.open.wo.cn
+  - hmrz.wo.cn
+  - nishub1.10010.com
+  - enrichgw.10010.com
+  - '*.wosms.cn'
+  - '*.jegotrip.com.cn'
+  - '*.icitymobile.mobi'
+  - '*.pingan.com.cn'
+  - '*.cmbchina.com'
+  - '*.10099.com.cn'
+  - '*.microdone.cn'
+  - PDC._msDCS.*.*
+  - DC._msDCS.*.*
+  - GC._msDCS.*.*
+  - time.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - time.*.apple.com
+  - time-ios.apple.com
+  - time1.*.com
+  - time2.*.com
+  - time3.*.com
+  - time4.*.com
+  - time5.*.com
+  - time6.*.com
+  - time7.*.com
+  - ntp.*.com
+  - ntp1.*.com
+  - ntp2.*.com
+  - ntp3.*.com
+  - ntp4.*.com
+  - ntp5.*.com
+  - ntp6.*.com
+  - ntp7.*.com
+  - '*.time.edu.cn'
+  - '*.ntp.org.cn'
+  - +.pool.ntp.org
+  - time1.cloud.tencent.com
+  - music.163.com
+  - '*.music.163.com'
+  - '*.126.net'
+  - musicapi.taihe.com
+  - music.taihe.com
+  - songsearch.kugou.com
+  - trackercdn.kugou.com
+  - '*.kuwo.cn'
+  - api-jooxtt.sanook.com
+  - api.joox.com
+  - joox.com
+  - y.qq.com
+  - '*.y.qq.com'
+  - streamoc.music.tc.qq.com
+  - mobileoc.music.tc.qq.com
+  - isure.stream.qqmusic.qq.com
+  - dl.stream.qqmusic.qq.com
+  - aqqmusic.tc.qq.com
+  - amobile.music.tc.qq.com
+  - '*.xiami.com'
+  - '*.music.migu.cn'
+  - music.migu.cn
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - +.qq.com
+  - +.tencent.com
+  - +.srv.nintendo.net
+  - '*.n.n.srv.nintendo.net'
+  - +.cdn.nintendo.net
+  - +.stun.playstation.net
+  - xbox.*.*.microsoft.com
+  - '*.*.xboxlive.com'
+  - xbox.*.microsoft.com
+  - xnotify.xboxlive.com
+  - +.battle.net
+  - +.battlenet.com.cn
+  - +.wotgame.cn
+  - +.wggames.cn
+  - +.wowsgame.cn
+  - +.wargaming.net
+  - proxy.golang.org
+  - stun.*.*
+  - stun.*.*.*
+  - +.stun.*.*
+  - +.stun.*.*.*
+  - +.stun.*.*.*.*
+  - +.stun.*.*.*.*.*
+  - heartbeat.belkin.com
+  - '*.linksys.com'
+  - '*.linksyssmartwifi.com'
+  - '*.router.asus.com'
+  - mesu.apple.com
+  - swscan.apple.com
+  - swquery.apple.com
+  - swdownload.apple.com
+  - swcdn.apple.com
+  - swdist.apple.com
+  - lens.l.google.com
+  - stun.l.google.com
+  - na.b.g-tun.com
+  - +.nflxvideo.net
+  - '*.square-enix.com'
+  - '*.finalfantasyxiv.com'
+  - '*.ffxiv.com'
+  - '*.ff14.sdo.com'
+  - ff.dorado.sdo.com
+  - '*.mcdn.bilivideo.cn'
+  - +.media.dssott.com
+  - shark007.net
+  - Mijia Cloud
+  - +.cmbchina.com
+  - +.cmbimg.com
+  - local.adguard.org
+  - +.sandai.net
+  - +.n0808.com
+  - +.uu.163.com
+  - ps.res.netease.com
+  - +.pub.3gppnetwork.org
+  - dns.msftncsi.com
+  - www.msftncsi.com
+  - www.msftconnecttest.com
+  - pool.ntp.org
+  - '*.ntp.org'
+  - +.market.xiaomi.com
+  - geosite:cn
+  respect-rules: false
+  fake-ip-filter-mode: blacklist
+proxies: null
+proxy-groups:
+- name: 手动选择
+  type: select
+  include-all: true
+  proxies:
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 手动选择2
+  type: select
+  include-all: true
+  proxies:
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 手动选择3
+  type: select
+  include-all: true
+  proxies:
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: ♻️ 自动选择
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  proxies: []
+  exclude-filter: (?i)(美国落地|美国家宽|US落地|US家宽|小鸡)
+- name: 链式前置
+  type: select
+  include-all: true
+  exclude-filter: 小鸡
+  proxies:
+  - DIRECT
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 链式落地
+  type: select
+  include-all: true
+  filter: 小鸡
+  proxies: []
+- name: 即时通讯
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 社交媒体
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Talkatone
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: GitHub
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+  - 全球直连
+- name: ChatGPT
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Copilot
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: AI服务
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: TikTok
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: YouTube
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Netflix
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: DisneyPlus
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: HBO
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: PrimeVideo
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: AppleTV+
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 新加坡节点
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+  - 全球直连
+- name: Emby
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 全球直连
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Spotify
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 全球直连
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Bahamut
+  type: select
+  proxies:
+  - 台湾节点
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - 全球直连
+- name: 国外媒体
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 国外电商
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 谷歌FCM
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 谷歌服务
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 苹果服务
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Ⓜ️ 微软服务
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: OneDrive
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: PayPal
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 游戏平台
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: Steam
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: ⏬ PT站点
+  type: select
+  proxies:
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 全球直连
+- name: 测速工具
+  type: select
+  proxies:
+  - 全球直连
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 漏网之鱼
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - 全球直连
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
+- name: 非标端口
+  type: select
+  proxies:
+  - 全球直连
+  - 漏网之鱼
+- name: 香港节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (港|\bHK(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|hk|Hong Kong|HongKong|hongkong|HONG KONG|HONGKONG|深港|HKG|九龙|Kowloon|新界|沙田|荃湾|葵涌)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 美国节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|纽约|纽纽|亚特兰大|迈阿密|华盛顿|\bUS(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|United States|UnitedStates|UNITED STATES|USA|America|AMERICA|JFK|EWR|IAD|ATL|ORD|MIA|NYC|LAX|SFO|SEA|DFW|SJC)
+  proxies: []
+  exclude-filter: (?i)(美国落地|美国家宽|US落地|US家宽|小鸡)
+- name: 日本节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<!尼|-)日|\bJP(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Japan|JAPAN|JPN|NRT|HND|KIX|TYO|OSA|关西|Kansai|KANSAI)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 新加坡节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (新加坡|坡|狮城|\bSG(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Singapore|SINGAPORE|SIN)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 台湾节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (台|新北|彰化|\bTW(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Taiwan|TAIWAN|TWN|TPE|ROC)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 韩国节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (\bKR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Korea|KOREA|KOR|首尔|韩|韓|春川|Chuncheon|ICN)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 加拿大节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (加拿大|\bCA(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Canada|CANADA|CAN|渥太华|温哥华|卡尔加里|蒙特利尔|Montreal|YVR|YYZ|YUL)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 英国节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (英国|Britain|United Kingdom|UNITED KINGDOM|England|伦敦|曼彻斯特|Manchester|\bUK(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|GBR|LHR|MAN)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 法国节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (法国|\bFR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|France|FRANCE|FRA|巴黎|马赛|Marseille|CDG|MRS)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 德国节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (德国|Germany|GERMANY|\bDE(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|DEU|柏林|法兰克福|慕尼黑|Munich|MUC)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 荷兰节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (荷兰|Netherlands|NETHERLANDS|\bNL(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|NLD|阿姆斯特丹|AMS)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 土耳其节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (土耳其|Turkey|TURKEY|Türkiye|\bTR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|TUR|IST|ANK)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 俄罗斯节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: ((?<!白)俄罗斯|(?<!白)俄|莫斯科|圣彼得堡|新西伯利亚|海参崴|符拉迪沃斯托克|哈巴罗夫斯克|伯力|\bRU(?:[-_ ]?\d+)?\b|Russia)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 其他地区
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (^(?!.*(港|\bHK(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|hk|Hong Kong|HongKong|hongkong|HONG KONG|HONGKONG|深港|HKG|九龙|Kowloon|新界|沙田|荃湾|葵涌|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|纽约|纽纽|亚特兰大|迈阿密|华盛顿|\bUS(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|United States|UnitedStates|UNITED STATES|USA|America|AMERICA|JFK|EWR|IAD|ATL|ORD|MIA|NYC|LAX|SFO|SEA|DFW|SJC|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|(?<!尼|-)日|\bJP(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Japan|JAPAN|JPN|NRT|HND|KIX|TYO|OSA|关西|Kansai|KANSAI|新加坡|坡|狮城|\bSG(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Singapore|SINGAPORE|SIN|台|新北|彰化|\bTW(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Taiwan|TAIWAN|TWN|TPE|ROC|\bKR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Korea|KOREA|KOR|首尔|韩|韓|春川|Chuncheon|ICN|加拿大|\bCA(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|Canada|CANADA|CAN|渥太华|温哥华|卡尔加里|蒙特利尔|Montreal|YVR|YYZ|YUL|英国|Britain|United Kingdom|UNITED KINGDOM|England|伦敦|曼彻斯特|Manchester|\bUK(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|GBR|LHR|MAN|法国|\bFR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|France|FRANCE|FRA|巴黎|马赛|Marseille|CDG|MRS|德国|Germany|GERMANY|\bDE(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|DEU|柏林|法兰克福|慕尼黑|Munich|MUC|荷兰|Netherlands|NETHERLANDS|\bNL(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|NLD|阿姆斯特丹|AMS|土耳其|Turkey|TURKEY|Türkiye|\bTR(?:[-_ ]?\d+(?:[-_ ]?[A-Za-z]{2,})?)?\b|TUR|IST|ANK|(?<!白)俄罗斯|(?<!白)俄|莫斯科|圣彼得堡|新西伯利亚|海参崴|符拉迪沃斯托克|哈巴罗夫斯克|伯力|\bRU(?:[-_ ]?\d+)?\b|Russia|家宽|家庭宽带|住宅|Residential|低倍率|低倍|(?<![\d\.])0?\.\d+(?![0-9])(?:x|倍)?|倍率[:： ]?0?\.\d+)).*)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 家宽节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (家宽|家庭宽带|住宅|Residential)
+  proxies: []
+  exclude-filter: (?i)(美国落地|美国家宽|US落地|US家宽|小鸡)
+- name: 低倍率节点
+  type: url-test
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+  include-all: true
+  filter: (低倍率|低倍|(?<![\d\.])0?\.\d+(?![0-9])(?:x|倍)?|倍率[:： ]?0?\.\d+)
+  proxies: []
+  exclude-filter: 小鸡
+- name: 全球直连
+  type: select
+  proxies:
+  - DIRECT
+rules:
+- GEOSITE,private,全球直连
+- GEOIP,private,全球直连,no-resolve
+- RULE-SET,Custom_Direct_Domain,全球直连
+- RULE-SET,Custom_Direct_Classical_IP,全球直连
+- RULE-SET,Custom_Proxy_Domain,手动选择
+- RULE-SET,Custom_Proxy_Classical_IP,手动选择
+- GEOSITE,google-cn,全球直连
+- GEOSITE,category-games@cn,全球直连
+- RULE-SET,Steam_CDN_Classical,全球直连
+- GEOSITE,category-game-platforms-download,全球直连
+- GEOSITE,category-public-tracker,全球直连
+- GEOSITE,category-communication,即时通讯
+- GEOSITE,category-social-media-!cn,社交媒体
+- GEOSITE,talkatone,Talkatone
+- GEOSITE,openai,ChatGPT
+- GEOSITE,onedrive,OneDrive
+- GEOSITE,bing,Copilot
+- GEOSITE,category-ai-!cn,AI服务
+- GEOSITE,github,GitHub
+- GEOSITE,category-speedtest,测速工具
+- GEOSITE,steam,Steam
+- GEOSITE,youtube,YouTube
+- GEOSITE,apple-tvplus,AppleTV+
+- GEOSITE,apple,苹果服务
+- GEOSITE,microsoft,Ⓜ️ 微软服务
+- GEOSITE,googlefcm,谷歌FCM
+- GEOSITE,google,谷歌服务
+- GEOSITE,tiktok,TikTok
+- GEOSITE,netflix,Netflix
+- GEOSITE,disney,DisneyPlus
+- GEOSITE,hbo,HBO
+- GEOSITE,primevideo,PrimeVideo
+- GEOSITE,category-emby,Emby
+- GEOSITE,spotify,Spotify
+- GEOSITE,bahamut,Bahamut
+- GEOSITE,category-games,游戏平台
+- GEOSITE,category-entertainment,国外媒体
+- GEOSITE,category-pt,⏬ PT站点
+- GEOSITE,paypal,PayPal
+- GEOSITE,category-ecommerce,国外电商
+- GEOSITE,gfw,手动选择
+- GEOIP,telegram,即时通讯,no-resolve
+- GEOIP,twitter,社交媒体,no-resolve
+- GEOIP,facebook,社交媒体,no-resolve
+- GEOIP,google,谷歌服务,no-resolve
+- GEOIP,netflix,Netflix,no-resolve
+- GEOSITE,cn,全球直连
+- GEOIP,cn,全球直连,no-resolve
+- RULE-SET,Custom_Port_Direct,非标端口
+- MATCH,漏网之鱼
+rule-providers:
+  Custom_Direct_Domain:
+    type: http
+    behavior: domain
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Direct_Domain.yaml
+    path: ./providers/Custom_Direct_Domain.yaml
+    interval: 28800
+  Custom_Direct_Classical_IP:
+    type: http
+    behavior: classical
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Direct_Classical_IP.yaml
+    path: ./providers/Custom_Direct_Classical_IP.yaml
+    interval: 28800
+  Custom_Proxy_Domain:
+    type: http
+    behavior: domain
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Proxy_Domain.yaml
+    path: ./providers/Custom_Proxy_Domain.yaml
+    interval: 28800
+  Custom_Proxy_Classical_IP:
+    type: http
+    behavior: classical
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Proxy_Classical_IP.yaml
+    path: ./providers/Custom_Proxy_Classical_IP.yaml
+    interval: 28800
+  Steam_CDN_Classical:
+    type: http
+    behavior: classical
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Steam_CDN_Classical.yaml
+    path: ./providers/Steam_CDN_Classical.yaml
+    interval: 28800
+  Custom_Port_Direct:
+    type: http
+    behavior: classical
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Port_Direct.yaml
+    path: ./providers/Custom_Port_Direct.yaml
+    interval: 28800
