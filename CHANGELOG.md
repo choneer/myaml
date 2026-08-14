@@ -2,6 +2,35 @@
 
 本文件记录 `choneer/myaml` 相对上游模板的个人化调整。
 
+## 2026-08-14
+
+### Full / Lite 双版本
+
+- 原 `config/OpenClash.yaml` 重命名为 `config/OpenClash_Full.yaml`。
+- Full 明确对应上游 `cfg/Custom_Clash_Full.ini`。
+- 新增 `config/OpenClash_Lite.yaml`，基于上游最新 `cfg/Custom_Clash_Lite.ini` 与官方对应 YAML 结构编写。
+- Lite 保留上游轻量版的基础分流定位，仅保留 GitHub、Google、Apple、Microsoft、Steam、游戏平台、测速、漏网之鱼和非标端口等基础策略。
+- Lite 地区组精简为香港、美国、日本、新加坡、台湾、韩国。
+- Lite 规则提供者跟随上游当前方案，Domain/IP 优先使用 MRS，复合/端口规则使用 Classical YAML。
+
+### Lite 个人化调整
+
+- 保留 `手动选择`、`手动选择2`、`手动选择3`，三个手动组均使用 `include-all: true`，可以直接选择实际节点。
+- 保留 `链式前置`，并支持 `DIRECT`。
+- 保留 `链式落地`，仅匹配名称包含 `小鸡` 的节点。
+- 自动选择和六个 Lite 地区组均排除 `小鸡`，避免落地节点混入普通/前置节点。
+- 三个手动组不排除 `小鸡`，仍可直接手动选择落地节点。
+- `漏网之鱼` 继续默认优先选择 `手动选择`。
+- `非标端口` 继续默认优先选择 `全球直连`。
+- DNS、Fake-IP、控制器等运行参数沿用当前 Full 中已经实际使用的设置。
+
+### 校验
+
+- Lite YAML 可正常解析。
+- Lite 共 23 个策略组、26 条分流规则、8 个规则提供者。
+- 策略组引用检查通过，无缺失引用。
+- 规则目标引用检查通过，无缺失策略组引用。
+
 ## 2026-08-12
 
 ### 初始化仓库
