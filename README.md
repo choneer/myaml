@@ -6,14 +6,16 @@
 
 ## 上游项目
 
-本配置基于并参考以下上游项目：
+本仓库基于并参考：
 
 - **Aethersailor/Custom_OpenClash_Rules**  
   https://github.com/Aethersailor/Custom_OpenClash_Rules
-- 原始规则模板：`cfg/Custom_Clash_Full.ini`  
+- Full 上游模板：`cfg/Custom_Clash_Full.ini`  
   https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/cfg/Custom_Clash_Full.ini
+- Lite 上游模板：`cfg/Custom_Clash_Lite.ini`  
+  https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/cfg/Custom_Clash_Lite.ini
 
-规则集、地区分组、服务分流和基础结构主要沿用上游设计；本仓库只在其基础上按照个人实际使用习惯进行调整。感谢上游作者及相关项目维护者。
+规则集、地区分组、服务分流和基础结构主要沿用上游设计；本仓库在其基础上按照个人实际使用习惯进行调整。感谢上游作者及相关项目维护者。
 
 ## 本仓库定位
 
@@ -21,6 +23,36 @@
 - 用于 OpenClash 的模板/覆写场景，代理节点由 OpenClash 后续注入，因此配置中保留 `proxies: null`。
 - 仓库中不保存机场订阅地址、节点密码、UUID、Token 等敏感信息。
 - 配置公开主要是为了方便自己跨设备同步和分享参考，不保证直接复制后适用于其他人的环境。
+
+## 配置版本
+
+### Full
+
+文件：`config/OpenClash_Full.yaml`
+
+基于上游 `Custom_Clash_Full.ini`，适合需要较完整服务分流、流媒体/AI/社交/电商等独立策略组的场景。
+
+保留较完整的地区节点组和服务策略组，是本仓库的完整版本。
+
+### Lite
+
+文件：`config/OpenClash_Lite.yaml`
+
+基于上游 `Custom_Clash_Lite.ini`，定位与上游一致：**只保留基础分流与基本直连规则**，适合不需要大量服务单独解锁/分流时使用。
+
+Lite 当前保留的主要服务分组包括：
+
+- GitHub
+- 谷歌 FCM / 谷歌服务
+- 苹果服务
+- 微软服务
+- Steam / 游戏平台
+- 测速工具
+- 漏网之鱼 / 非标端口
+
+地区组按上游 Lite 思路精简为：香港、美国、日本、新加坡、台湾、韩国。
+
+同时，Lite 仍保留本仓库的个人扩展：`手动选择2/3`、`链式前置`、`链式落地` 与 `小鸡` 节点隔离。
 
 ## 主要自定义内容
 
@@ -65,13 +97,22 @@ myaml/
 ├── README.md
 ├── CHANGELOG.md
 └── config/
-    └── OpenClash.yaml
+    ├── OpenClash_Full.yaml
+    └── OpenClash_Lite.yaml
 ```
 
-实际使用配置：
+## Raw 配置
+
+Full：
 
 ```text
-config/OpenClash.yaml
+https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Full.yaml
+```
+
+Lite：
+
+```text
+https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Lite.yaml
 ```
 
 ## 使用提醒
@@ -81,7 +122,8 @@ config/OpenClash.yaml
 3. `小鸡` 是本人的落地节点命名约定，不具有通用含义。
 4. 使用链式代理时，请在 OpenClash 中同步设置 `链式前置 → 链式落地`。
 5. 如果修改了策略组名称，OpenClash 外部链式配置中的名称也需要同步修改。
-6. 更新本仓库配置前，建议先保留一份当前可用配置，方便回滚。
+6. Lite 使用上游当前的 MRS Domain/IP 规则提供者，需要使用支持对应格式的 Mihomo Core。
+7. 更新本仓库配置前，建议先保留一份当前可用配置，方便回滚。
 
 ## 变更记录
 
