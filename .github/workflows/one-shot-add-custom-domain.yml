@@ -1,0 +1,204 @@
+name: One-shot add custom domain group
+
+on:
+  push:
+    paths:
+      - .github/workflows/one-shot-add-custom-domain.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-configs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch Full/Lite YAML and INI
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(text, old, new, label):
+              if new in text:
+                  return text
+              if old not in text:
+                  raise SystemExit(f"marker not found: {label}")
+              return text.replace(old, old + new, 1)
+
+          def patch_yaml(path, full):
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+
+              rule_marker = "- GEOIP,private,全球直连,no-resolve\n"
+              rule_line = "- DOMAIN-SUFFIX,choner.eu.org,自有域名\n"
+              if rule_line not in text:
+                  if rule_marker not in text:
+                      raise SystemExit(f"rule marker not found: {path}")
+                  text = text.replace(rule_marker, rule_marker + rule_line, 1)
+
+              landing = """- name: 链式落地
+          type: select
+          include-all: true
+          filter: 小鸡
+          proxies: []
+          """
+              if full:
+                  group = """- name: 自有域名
+          type: select
+          proxies:
+          - 手动选择
+          - 手动选择2
+          - 手动选择3
+          - 全球直连
+          - ♻️ 自动选择
+          - 香港节点
+          - 美国节点
+          - 链式落地
+          - 日本节点
+          - 新加坡节点
+          - 台湾节点
+          - 韩国节点
+          - 加拿大节点
+          - 英国节点
+          - 法国节点
+          - 德国节点
+          - 荷兰节点
+          - 土耳其节点
+          - 俄罗斯节点
+          - 其他地区
+          - 家宽节点
+          - 低倍率节点
+          """
+              else:
+                  group = """- name: 自有域名
+          type: select
+          proxies:
+          - 手动选择
+          - 手动选择2
+          - 手动选择3
+          - 全球直连
+          - ♻️ 自动选择
+          - 香港节点
+          - 美国节点
+          - 日本节点
+          - 新加坡节点
+          - 台湾节点
+          - 韩国节点
+          - 链式落地
+          """
+              if "- name: 自有域名\n" not in text:
+                  if landing not in text:
+                      raise SystemExit(f"landing marker not found: {path}")
+                  text = text.replace(landing, landing + group, 1)
+
+              if text.count("- name: 自有域名\n") != 1:
+                  raise SystemExit(f"unexpected custom-domain group count: {path}")
+              if text.count(rule_line) != 1:
+                  raise SystemExit(f"unexpected custom-domain rule count: {path}")
+              p.write_text(text, encoding="utf-8")
+
+          def patch_ini(path, full):
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+              rule_marker = "ruleset=全球直连,[]GEOIP,private,no-resolve\n"
+              rule = "; 自有域名及其全部子域名独立分流\nruleset=自有域名,[]DOMAIN-SUFFIX,choner.eu.org\n"
+              if "ruleset=自有域名,[]DOMAIN-SUFFIX,choner.eu.org\n" not in text:
+                  if rule_marker not in text:
+                      raise SystemExit(f"INI rule marker not found: {path}")
+                  text = text.replace(rule_marker, rule_marker + rule, 1)
+
+              landing = "custom_proxy_group=链式落地`select`小鸡\n"
+              if full:
+                  group = "custom_proxy_group=自有域名`select`[]手动选择`[]手动选择2`[]手动选择3`[]全球直连`[]♻️ 自动选择`[]香港节点`[]美国节点`[]链式落地`[]日本节点`[]新加坡节点`[]台湾节点`[]韩国节点`[]加拿大节点`[]英国节点`[]法国节点`[]德国节点`[]荷兰节点`[]土耳其节点`[]俄罗斯节点`[]其他地区`[]家宽节点`[]低倍率节点\n"
+              else:
+                  group = "custom_proxy_group=自有域名`select`[]手动选择`[]手动选择2`[]手动选择3`[]全球直连`[]♻️ 自动选择`[]香港节点`[]美国节点`[]日本节点`[]新加坡节点`[]台湾节点`[]韩国节点`[]链式落地\n"
+              if "custom_proxy_group=自有域名`select`" not in text:
+                  if landing not in text:
+                      raise SystemExit(f"INI landing marker not found: {path}")
+                  text = text.replace(landing, landing + group, 1)
+
+              if text.count("ruleset=自有域名,[]DOMAIN-SUFFIX,choner.eu.org\n") != 1:
+                  raise SystemExit(f"unexpected INI custom-domain rule count: {path}")
+              if text.count("custom_proxy_group=自有域名`select`") != 1:
+                  raise SystemExit(f"unexpected INI custom-domain group count: {path}")
+              p.write_text(text, encoding="utf-8")
+
+          patch_yaml("config/OpenClash_Full.yaml", True)
+          patch_yaml("config/OpenClash_Lite.yaml", False)
+          patch_ini("config/OpenClash_Full.ini", True)
+          patch_ini("config/OpenClash_Lite.ini", False)
+
+          # README: record the mandatory synchronization rule and new custom domain group.
+          p = Path("README.md")
+          text = p.read_text(encoding="utf-8")
+          sync_anchor = "- 两种格式的**规则顺序、策略组名称、默认候选顺序和节点筛选逻辑保持等效**。\n"
+          sync_line = "- **维护要求：同一版本的 YAML 与 INI 必须同步修改，Full/Lite 也需保持各自对应关系，禁止只改其中一种格式。**\n"
+          if sync_line not in text:
+              if sync_anchor not in text:
+                  raise SystemExit("README sync anchor not found")
+              text = text.replace(sync_anchor, sync_anchor + sync_line, 1)
+
+          custom_anchor = "- `非标端口` 默认优先走 `全球直连`，同样是个人实际使用习惯。\n"
+          custom_line = "- 新增 `自有域名` 策略组；`choner.eu.org` 及其全部子域名通过 `DOMAIN-SUFFIX` 提前命中，可独立选择直连、手动、自动、地区或链式落地出口。\n"
+          if custom_line not in text:
+              if custom_anchor not in text:
+                  raise SystemExit("README custom anchor not found")
+              text = text.replace(custom_anchor, custom_anchor + custom_line, 1)
+
+          lite_anchor = "- 漏网之鱼 / 非标端口\n"
+          if "- 自有域名\n" not in text:
+              if lite_anchor not in text:
+                  raise SystemExit("README Lite anchor not found")
+              text = text.replace(lite_anchor, "- 自有域名\n" + lite_anchor, 1)
+          p.write_text(text, encoding="utf-8")
+
+          # CHANGELOG: document this synchronized change.
+          p = Path("CHANGELOG.md")
+          text = p.read_text(encoding="utf-8")
+          heading = "## 2026-09-18\n\n"
+          section = """### 新增自有域名独立策略组
+
+          - Full / Lite 均新增 `自有域名` 策略组。
+          - 新增高优先级规则 `DOMAIN-SUFFIX,choner.eu.org,自有域名`，覆盖 `choner.eu.org` 本身及其全部子域名，避免继续落入 `漏网之鱼`。
+          - `自有域名` 默认优先选择 `手动选择`，保持原先命中 `漏网之鱼` 时的默认代理行为不突变；同时可独立切换 `全球直连`、自动选择、地区节点和 `链式落地`。
+          - Full / Lite 的 YAML 与 INI 已同步更新。
+          - 新增长期维护要求：同一版本的 YAML / INI 必须同步修改，禁止只改其中一种格式。
+          - 更新后 Full 为 55 个策略组、51 条分流规则；Lite 为 24 个策略组、27 条分流规则。
+
+          """
+          if "### 新增自有域名独立策略组\n" not in text:
+              if heading not in text:
+                  raise SystemExit("CHANGELOG heading not found")
+              text = text.replace(heading, heading + section, 1)
+          p.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Validate synchronized changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in config/OpenClash_Full.yaml config/OpenClash_Lite.yaml; do
+            test "$(grep -c '^- name: 自有域名$' "$f")" -eq 1
+            test "$(grep -c '^- DOMAIN-SUFFIX,choner.eu.org,自有域名$' "$f")" -eq 1
+          done
+          for f in config/OpenClash_Full.ini config/OpenClash_Lite.ini; do
+            test "$(grep -c '^ruleset=自有域名,\[\]DOMAIN-SUFFIX,choner.eu.org$' "$f")" -eq 1
+            test "$(grep -c '^custom_proxy_group=自有域名`select`' "$f")" -eq 1
+          done
+          git diff --check
+
+      - name: Commit synchronized update and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/OpenClash_Full.yaml config/OpenClash_Lite.yaml config/OpenClash_Full.ini config/OpenClash_Lite.ini README.md CHANGELOG.md
+          git rm .github/workflows/one-shot-add-custom-domain.yml
+          git commit -m "config: add custom domain strategy group"
+          git push
