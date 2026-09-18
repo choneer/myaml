@@ -4,6 +4,19 @@
 >
 > 🤖 **由 ChatGPT 强力驱动** —— 配置整理、规则审查、结构优化与文档维护均由 ChatGPT 协助完成。
 
+## 上游同步维护规则
+
+本仓库基于并参考 `Aethersailor/Custom_OpenClash_Rules`。
+
+维护原则：
+
+- 跟踪上游规则变化，但不直接覆盖本仓库个人化配置。
+- 只同步必要的规则集、规则顺序优化和规则兼容性更新。
+- 不同步上游策略组结构，避免覆盖本仓库的个人策略组设计。
+- `自有域名`、`手动选择2`、`手动选择3`、`链式前置`、`链式落地` 等个人扩展始终独立维护。
+- Full / Lite 版本分别保持自身定位，不因为上游更新而互相合并。
+- Full / Lite 的 YAML 与 INI 必须同步修改，禁止只更新其中一种格式。
+
 ## 上游项目
 
 本仓库基于并参考：
@@ -33,71 +46,28 @@
 
 基于上游 `Custom_Clash_Full.ini`，适合需要较完整服务分流、流媒体/AI/社交/电商等独立策略组的场景。
 
-保留较完整的地区节点组和服务策略组，是本仓库的完整版本。
-
 ### Lite
 
 完整运行配置：`config/OpenClash_Lite.yaml`  
 订阅转换规则：`config/OpenClash_Lite.ini`
 
-基于上游 `Custom_Clash_Lite.ini`，定位与上游一致：**只保留基础分流与基本直连规则**，适合不需要大量服务单独解锁/分流时使用。
-
-Lite 当前保留的主要服务分组包括：
-
-- GitHub
-- 谷歌 FCM / 谷歌服务
-- 苹果服务
-- 微软服务
-- Steam / 游戏平台
-- 测速工具
-- 漏网之鱼 / 非标端口
-
-地区组按上游 Lite 思路精简为：香港、美国、日本、新加坡、台湾、韩国。
-
-同时，Lite 仍保留本仓库的个人扩展：`手动选择2/3`、`链式前置`、`链式落地` 与 `小鸡` 节点隔离。
+基于上游 `Custom_Clash_Lite.ini`，定位与上游一致：只保留基础分流与基本直连规则。
 
 ## YAML 与 INI 的关系
 
-- `.yaml`：给 OpenClash/Mihomo 直接加载，包含策略组、规则以及 DNS、控制器、Profile 等运行参数。
-- `.ini`：用于 subconverter/订阅转换，重点描述 `ruleset` 与 `custom_proxy_group`。
-- 两种格式的**规则顺序、策略组名称、默认候选顺序和节点筛选逻辑保持等效**。
-- INI 无法承载 DNS、`external-controller`、`profile`、监听端口等完整 Mihomo 运行参数，因此这些项目仍以 YAML 或 OpenClash LuCI 设置为准。
+- `.yaml`：给 OpenClash/Mihomo 直接加载，包含完整运行参数。
+- `.ini`：用于 subconverter/订阅转换，重点描述 ruleset 与 custom_proxy_group。
+- 两种格式的规则顺序、策略组名称、默认候选顺序和节点筛选逻辑保持等效。
+- INI 不替代完整 YAML。
 
 ## 主要自定义内容
 
-相对上游模板，目前主要做了以下个人化调整：
-
 - 增加 `手动选择2`、`手动选择3`。
-- `手动选择`、`手动选择2`、`手动选择3` 均可直接选择 OpenClash 注入的具体节点。
-- 增加 `链式前置` 策略组，并提供 `DIRECT` 选项，用于快速关闭前置代理。
-- 将落地节点统一归入 `链式落地` 策略组。
-- 名称中包含 **`小鸡`** 的节点自动加入 `链式落地`。
-- 普通自动选择及地区节点组排除名称包含 `小鸡` 的节点，避免落地节点混入前置节点。
-- 三个手动选择组仍可直接选择名称包含 `小鸡` 的具体节点。
-- `漏网之鱼` 默认优先走 `手动选择`，这是个人实际使用习惯。
-- `非标端口` 默认优先走 `全球直连`，同样是个人实际使用习惯。
-
-## 链式代理说明
-
-本仓库中的配置文件**不直接创建完整链式关系**。链式代理由 OpenClash 的外部链式配置完成。
-
-约定：
-
-```text
-链式前置 → 链式落地
-```
-
-其中：
-
-- `链式前置`：可选择 `DIRECT`、自动选择、地区组或具体普通节点。
-- `链式落地`：自动匹配名称中包含 `小鸡` 的节点。
-- 如果希望某个落地节点自动进入 `链式落地`，请自行将节点名称修改为包含 `小鸡`，例如：
-
-```text
-小鸡-洛杉矶
-小鸡-US01
-小鸡-家宽01
-```
+- 增加 `链式前置`、`链式落地`。
+- 使用 `小鸡` 作为落地节点标识。
+- `漏网之鱼` 默认优先选择 `手动选择`。
+- `非标端口` 默认优先选择 `全球直连`。
+- 增加 `自有域名` 策略组，独立管理 `choner.eu.org`。
 
 ## 文件说明
 
@@ -112,57 +82,13 @@ myaml/
     └── OpenClash_Lite.ini
 ```
 
-## Raw 配置
-
-Full YAML：
-
-```text
-https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Full.yaml
-```
-
-Full INI：
-
-```text
-https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Full.ini
-```
-
-Lite YAML：
-
-```text
-https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Lite.yaml
-```
-
-Lite INI：
-
-```text
-https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Lite.ini
-```
-
 ## 使用提醒
 
-1. 本配置依赖 OpenClash/Mihomo 及对应 GeoSite、GeoIP 数据。
-2. 节点由 OpenClash/订阅注入，仓库本身不包含可用代理节点。
-3. `小鸡` 是本人的落地节点命名约定，不具有通用含义。
-4. 使用链式代理时，请在 OpenClash 中同步设置 `链式前置 → 链式落地`。
-5. 如果修改了策略组名称，OpenClash 外部链式配置中的名称也需要同步修改。
-6. Lite YAML 使用上游当前的 MRS Domain/IP 规则提供者，需要使用支持对应格式的 Mihomo Core。
-7. INI 主要用于订阅转换，不应当作完整 Mihomo 运行配置直接替代 YAML。
-8. 更新本仓库配置前，建议先保留一份当前可用配置，方便回滚。
+1. 节点由 OpenClash/订阅注入，仓库不保存真实代理节点。
+2. `小鸡` 是个人命名约定。
+3. 修改策略组名称后，需要同步调整外部链式配置。
+4. 更新配置前建议保留可用版本方便回滚。
 
 ## 变更记录
 
 见 [CHANGELOG.md](CHANGELOG.md)。
-
-## 自有域名策略
-
-- Full / Lite 均提供 `自有域名` 策略组。
-
-- `DOMAIN-SUFFIX,choner.eu.org` 会匹配 `choner.eu.org` 本身及其全部子域名，并在较高优先级进入 `自有域名`，避免落入 `漏网之鱼`。
-
-- `自有域名` 默认优先选择 `手动选择`，也可独立切换 `全球直连`、自动选择、地区节点或 `链式落地`。
-
-## 同步维护要求
-
-- **同一版本的 YAML 与 INI 必须同步修改。**
-
-- Full / Lite 各自保持规则顺序、策略组名称、默认候选顺序和节点筛选逻辑对应，禁止只修改一种格式。
