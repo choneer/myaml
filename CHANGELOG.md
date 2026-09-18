@@ -2,6 +2,16 @@
 
 本文件记录 `choneer/myaml` 相对上游模板的个人化调整。
 
+## 2026-09-18
+
+### 新增 INI 对应版本
+
+- 新增 `config/OpenClash_Full.ini`，与 `OpenClash_Full.yaml` 的分流规则、策略组、默认候选顺序和节点筛选逻辑保持等效。
+- 新增 `config/OpenClash_Lite.ini`，与 `OpenClash_Lite.yaml` 的分流规则、策略组、默认候选顺序和节点筛选逻辑保持等效。
+- INI 用于 subconverter/订阅转换；DNS、`external-controller`、`profile`、监听端口等 Mihomo 运行参数仍由 YAML 或 OpenClash LuCI 管理。
+- Full INI 共 54 个策略组；Lite INI 共 23 个策略组。
+- 已检查 INI 内规则目标与策略组引用，无缺失引用。
+
 ## 2026-08-14
 
 ### Full / Lite 双版本
