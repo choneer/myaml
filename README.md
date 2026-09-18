@@ -152,3 +152,17 @@ https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Lite.ini
 ## 变更记录
 
 见 [CHANGELOG.md](CHANGELOG.md)。
+
+## 自有域名策略
+
+- Full / Lite 均提供 `自有域名` 策略组。
+
+- `DOMAIN-SUFFIX,choner.eu.org` 会匹配 `choner.eu.org` 本身及其全部子域名，并在较高优先级进入 `自有域名`，避免落入 `漏网之鱼`。
+
+- `自有域名` 默认优先选择 `手动选择`，也可独立切换 `全球直连`、自动选择、地区节点或 `链式落地`。
+
+## 同步维护要求
+
+- **同一版本的 YAML 与 INI 必须同步修改。**
+
+- Full / Lite 各自保持规则顺序、策略组名称、默认候选顺序和节点筛选逻辑对应，禁止只修改一种格式。

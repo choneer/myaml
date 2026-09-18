@@ -286,6 +286,31 @@ proxy-groups:
   include-all: true
   filter: 小鸡
   proxies: []
+- name: 自有域名
+  type: select
+  proxies:
+  - 手动选择
+  - 手动选择2
+  - 手动选择3
+  - 全球直连
+  - ♻️ 自动选择
+  - 香港节点
+  - 美国节点
+  - 链式落地
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 韩国节点
+  - 加拿大节点
+  - 英国节点
+  - 法国节点
+  - 德国节点
+  - 荷兰节点
+  - 土耳其节点
+  - 俄罗斯节点
+  - 其他地区
+  - 家宽节点
+  - 低倍率节点
 - name: 即时通讯
   type: select
   proxies:
@@ -1159,6 +1184,7 @@ proxy-groups:
 rules:
 - GEOSITE,private,全球直连
 - GEOIP,private,全球直连,no-resolve
+- DOMAIN-SUFFIX,choner.eu.org,自有域名
 - RULE-SET,Custom_Direct_Domain,全球直连
 - RULE-SET,Custom_Direct_Classical_IP,全球直连
 - RULE-SET,Custom_Proxy_Domain,手动选择
