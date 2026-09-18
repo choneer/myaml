@@ -20,7 +20,7 @@
 ## 本仓库定位
 
 - **以自用为主**，不是通用订阅配置。
-- 用于 OpenClash 的模板/覆写场景，代理节点由 OpenClash 后续注入，因此配置中保留 `proxies: null`。
+- 用于 OpenClash 的模板/覆写场景，代理节点由 OpenClash 后续注入，因此 YAML 中保留 `proxies: null`。
 - 仓库中不保存机场订阅地址、节点密码、UUID、Token 等敏感信息。
 - 配置公开主要是为了方便自己跨设备同步和分享参考，不保证直接复制后适用于其他人的环境。
 
@@ -28,7 +28,8 @@
 
 ### Full
 
-文件：`config/OpenClash_Full.yaml`
+完整运行配置：`config/OpenClash_Full.yaml`  
+订阅转换规则：`config/OpenClash_Full.ini`
 
 基于上游 `Custom_Clash_Full.ini`，适合需要较完整服务分流、流媒体/AI/社交/电商等独立策略组的场景。
 
@@ -36,7 +37,8 @@
 
 ### Lite
 
-文件：`config/OpenClash_Lite.yaml`
+完整运行配置：`config/OpenClash_Lite.yaml`  
+订阅转换规则：`config/OpenClash_Lite.ini`
 
 基于上游 `Custom_Clash_Lite.ini`，定位与上游一致：**只保留基础分流与基本直连规则**，适合不需要大量服务单独解锁/分流时使用。
 
@@ -54,6 +56,13 @@ Lite 当前保留的主要服务分组包括：
 
 同时，Lite 仍保留本仓库的个人扩展：`手动选择2/3`、`链式前置`、`链式落地` 与 `小鸡` 节点隔离。
 
+## YAML 与 INI 的关系
+
+- `.yaml`：给 OpenClash/Mihomo 直接加载，包含策略组、规则以及 DNS、控制器、Profile 等运行参数。
+- `.ini`：用于 subconverter/订阅转换，重点描述 `ruleset` 与 `custom_proxy_group`。
+- 两种格式的**规则顺序、策略组名称、默认候选顺序和节点筛选逻辑保持等效**。
+- INI 无法承载 DNS、`external-controller`、`profile`、监听端口等完整 Mihomo 运行参数，因此这些项目仍以 YAML 或 OpenClash LuCI 设置为准。
+
 ## 主要自定义内容
 
 相对上游模板，目前主要做了以下个人化调整：
@@ -70,7 +79,7 @@ Lite 当前保留的主要服务分组包括：
 
 ## 链式代理说明
 
-本仓库中的 YAML **不直接创建完整链式关系**。链式代理由 OpenClash 的外部链式配置完成。
+本仓库中的配置文件**不直接创建完整链式关系**。链式代理由 OpenClash 的外部链式配置完成。
 
 约定：
 
@@ -98,32 +107,47 @@ myaml/
 ├── CHANGELOG.md
 └── config/
     ├── OpenClash_Full.yaml
-    └── OpenClash_Lite.yaml
+    ├── OpenClash_Full.ini
+    ├── OpenClash_Lite.yaml
+    └── OpenClash_Lite.ini
 ```
 
 ## Raw 配置
 
-Full：
+Full YAML：
 
 ```text
 https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Full.yaml
 ```
 
-Lite：
+Full INI：
+
+```text
+https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Full.ini
+```
+
+Lite YAML：
 
 ```text
 https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Lite.yaml
 ```
 
+Lite INI：
+
+```text
+https://raw.githubusercontent.com/choneer/myaml/main/config/OpenClash_Lite.ini
+```
+
 ## 使用提醒
 
 1. 本配置依赖 OpenClash/Mihomo 及对应 GeoSite、GeoIP 数据。
-2. 节点由 OpenClash/订阅注入，本文件本身不包含可用代理节点。
+2. 节点由 OpenClash/订阅注入，仓库本身不包含可用代理节点。
 3. `小鸡` 是本人的落地节点命名约定，不具有通用含义。
 4. 使用链式代理时，请在 OpenClash 中同步设置 `链式前置 → 链式落地`。
 5. 如果修改了策略组名称，OpenClash 外部链式配置中的名称也需要同步修改。
-6. Lite 使用上游当前的 MRS Domain/IP 规则提供者，需要使用支持对应格式的 Mihomo Core。
-7. 更新本仓库配置前，建议先保留一份当前可用配置，方便回滚。
+6. Lite YAML 使用上游当前的 MRS Domain/IP 规则提供者，需要使用支持对应格式的 Mihomo Core。
+7. INI 主要用于订阅转换，不应当作完整 Mihomo 运行配置直接替代 YAML。
+8. 更新本仓库配置前，建议先保留一份当前可用配置，方便回滚。
 
 ## 变更记录
 
